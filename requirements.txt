@@ -1,6 +1,11 @@
-pyspark==3.1.2
-wheel==0.36.2
-pylint==2.9.6
-numpy==1.21.2
-pandas==1.3.3
-matplotlib==3.4.3
+pyspark
+wheel
+pylint
+numpy
+pandas
+matplotlib
+flask
+delta-spark
+apache-airflow
+requests
+pytest
