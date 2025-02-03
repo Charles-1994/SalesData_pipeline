@@ -15,11 +15,15 @@ def main(folder_path: str = 'source', file_path: str = 'list_of_files.txt') -> N
         None
     """
     logger.info(f"Starting batch processing for folder: {folder_path}")
-    logger.info(f"Current working directory: {os.getcwd()}")
     try:
         spark = get_spark_session()
+
+        folder_path  = os.path.abspath(folder_path)
+        logger.info(f"Processing folder: {folder_path}")
         csv_files = get_csv_files(folder_path)
-        write_to_file(csv_files, file_path, 'w')  # Write all file paths to the tracking file
+        
+        # Write all file paths to the tracking file
+        write_to_file(csv_files, file_path, 'w')
 
         logger.info("Reading the first file to get the reference schema...")
         # Read the first file to get the reference schema

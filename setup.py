@@ -8,6 +8,13 @@ setup(
     name='Sales_data_pipeline',
     version='1.0',
     packages=find_packages(),
+    package_data={
+        # Include only Python files and necessary configs
+        '': ['*.py', '*.txt', '*.yaml']
+    },
+    exclude_package_data={
+        '': ['*.csv', 'source/*']  # Explicitly exclude data folders
+    },
     install_requires=required,  # Use the list of dependencies from requirements.txt
     entry_points={
         'console_scripts': [

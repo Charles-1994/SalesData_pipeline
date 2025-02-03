@@ -20,8 +20,16 @@ def get_csv_files(folder_path: str) -> List[str]:
     Returns:
         List[str]: A list of file paths for all CSV files in the folder.
     """
-    logger.info(f"Fetching CSV files from folder: {folder_path}")
-    csv_files =  [os.path.join(folder_path, f) for f in os.listdir(folder_path) if f.endswith('.csv')]
+    logger.info(f"Fetching CSV files from folder....")
+
+    # Resolve to absolute path
+    abs_folder_path = os.path.abspath(folder_path)
+    logger.info(f"Resolved absolute path: {abs_folder_path}")
+    
+    if not os.path.exists(abs_folder_path):
+        raise FileNotFoundError(f"Folder '{abs_folder_path}' does not exist!")
+    
+    csv_files = [os.path.join(abs_folder_path, f) for f in os.listdir(abs_folder_path) if f.endswith('.csv')]
     logger.info(f"Found {len(csv_files)} CSV files.")
     return csv_files
 
