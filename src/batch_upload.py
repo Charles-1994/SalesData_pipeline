@@ -1,7 +1,8 @@
-from src.utils import logger, create_spark_session, get_csv_files, write_to_file, remove_nulls, remove_duplicates, renaming_columns, save_full_table
+from src.utils import logger, get_spark_session
+from src.common_funcs import get_csv_files, write_to_file, remove_nulls, remove_duplicates, renaming_columns, save_full_table
 from pyspark.sql.functions import to_timestamp, year, month
 
-def batch_process(folder_path: str = 'Sales_Data', file_path: str = 'list_of_files.txt') -> None:
+def main(folder_path: str = 'source', file_path: str = 'list_of_files.txt') -> None:
     """
     Perform batch processing on CSV files in a folder, cleaning and saving them as a Delta table.
 
@@ -15,7 +16,7 @@ def batch_process(folder_path: str = 'Sales_Data', file_path: str = 'list_of_fil
     logger.info(f"Starting batch processing for folder: {folder_path}")
 
     try:
-        spark = create_spark_session()
+        spark = get_spark_session()
         
         csv_files = get_csv_files(folder_path)
 
@@ -72,4 +73,4 @@ def batch_process(folder_path: str = 'Sales_Data', file_path: str = 'list_of_fil
             logger.info("Spark session stopped.")
 
 if __name__ == "__main__":
-    batch_process()
+    main()
