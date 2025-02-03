@@ -1,6 +1,7 @@
+import os
+from pyspark.sql.functions import to_timestamp, year, month
 from src.utils import logger, get_spark_session
 from src.common_funcs import get_csv_files, write_to_file, remove_nulls, remove_duplicates, renaming_columns, save_full_table
-from pyspark.sql.functions import to_timestamp, year, month
 
 def main(folder_path: str = 'source', file_path: str = 'list_of_files.txt') -> None:
     """
@@ -14,12 +15,10 @@ def main(folder_path: str = 'source', file_path: str = 'list_of_files.txt') -> N
         None
     """
     logger.info(f"Starting batch processing for folder: {folder_path}")
-
+    logger.info(f"Current working directory: {os.getcwd()}")
     try:
         spark = get_spark_session()
-        
         csv_files = get_csv_files(folder_path)
-
         write_to_file(csv_files, file_path, 'w')  # Write all file paths to the tracking file
 
         logger.info("Reading the first file to get the reference schema...")
@@ -50,7 +49,7 @@ def main(folder_path: str = 'source', file_path: str = 'list_of_files.txt') -> N
         
         logger.info("Converting 'Order Date' column to timestamp format...")
         main_df = main_df.withColumn('Order Date', to_timestamp('Order Date', 'MM/dd/yy HH:mm'))
-        
+
         # Add partitioning columns
         logger.info("Adding partitioning columns 'year' and 'month'...")
         main_df = main_df.withColumn("year", year(main_df["Order Date"]))

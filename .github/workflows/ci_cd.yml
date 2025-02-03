@@ -9,28 +9,6 @@ on:
       - main
 
 jobs:
-  lint:
-    name: Lint Code with Pylint
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Set up Python Environment
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-
-      - name: Install Dependencies
-        run: |
-          python -m pip install --upgrade pip setuptools wheel
-          pip install pylint
-
-      - name: Run Pylint
-        run: |
-          pylint src/
-
   test:
     name: Run Unit Tests
     runs-on: ubuntu-latest
@@ -52,6 +30,29 @@ jobs:
       - name: Run Unit Tests with Pytest
         run: |
           pytest tests/
+
+  lint:
+    name: Lint Code with Pylint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python Environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          pip install -r requirements.txt pyspark, delta-spark
+          pip install pylint
+
+      - name: Run Pylint
+        run: |
+          pylint src/
 
   build-and-deploy:
     name: Build and Deploy Package
