@@ -15,6 +15,9 @@ def get_spark_session(app_name: str ='Sales_data') -> SparkSession:
     """
 
     builder = SparkSession.builder.appName(app_name) \
+        .config("spark.driver.bindAddress", "127.0.0.1") \
+        .config("spark.driver.host", "127.0.0.1") \
+        .config("spark.network.timeout", "800s") \
         .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
         .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
 
