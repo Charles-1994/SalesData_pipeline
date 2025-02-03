@@ -25,6 +25,9 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+cleansed/
+list_of_files.txt
+src/rough.py
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

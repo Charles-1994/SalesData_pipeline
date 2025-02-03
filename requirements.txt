@@ -9,3 +9,4 @@ delta-spark
 apache-airflow
 requests
 pytest
+chispa
