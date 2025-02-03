@@ -28,6 +28,7 @@ MANIFEST
 cleansed/
 list_of_files.txt
 src/rough.py
+dist/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
