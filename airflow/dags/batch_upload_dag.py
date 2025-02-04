@@ -26,7 +26,7 @@ with DAG(
         # Task to run the batch_upload pipeline
     batch_upload = BashOperator(
         task_id='run_batch_upload',
-        bash_command='batch_upload',  # This runs the entry point defined in setup.py
+        bash_command='batch_upload /workspaces/Sales_Data_app/source',  # This runs the entry point defined in setup.py
     )
 
     # Define task dependencies
