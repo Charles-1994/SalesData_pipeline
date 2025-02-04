@@ -22,6 +22,15 @@ jobs:
         with:
           python-version: '3.10'
 
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+  
+
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip setuptools wheel
@@ -47,7 +56,7 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip setuptools wheel
-          pip install -r requirements.txt pyspark delta-spark
+          pip install pyspark delta-spark
           pip install pylint
 
       - name: Run Pylint
@@ -66,6 +75,14 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
       - name: Install dependencies and Build Package
         run: |

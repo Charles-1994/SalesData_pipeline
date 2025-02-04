@@ -115,7 +115,7 @@ def renaming_columns(df: DataFrame) -> DataFrame:
     logger.info("Column renaming completed.")
     return df
 
-def save_full_table(df: DataFrame, cleansed_path: str = "cleansed") -> None:
+def save_full_table(df: DataFrame, cleansed_path: str = "./cleansed") -> None:
     """
     Save a Spark DataFrame as a Delta table partitioned by 'year' and 'month'.
 

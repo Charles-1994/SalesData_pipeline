@@ -218,14 +218,6 @@ Both operations will create a `cleansed/Sales_Data/` folder containing data in D
 1. Migrate storage to Azure Data Lake Storage Gen2 for scalability.
 2. Use Z-ordering in Delta Lake for optimizing queries on secondary columns like `Product`.
 3. Add monitoring and alerting for Airflow DAGs.
+4. Add Mocker tests for Batch_upload and incremental_upload pipeline
 
 ---
-
-This README provides an overview of your project while being concise yet detailed enough for users or collaborators on GitHub!
-
-Citations:
-[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/21222728/4cd5b12e-7e67-432c-a9fd-fd2b03110c4e/paste.txt
-[2] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/21222728/0276a599-fd98-454d-9950-304c4f3786e8/Sales-Data-Pipeline-Documentation.docx
-
----
-Answer from Perplexity: pplx.ai/share

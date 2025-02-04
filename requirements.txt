@@ -3,10 +3,8 @@ wheel
 pylint
 numpy
 pandas
-matplotlib
 flask
 delta-spark
 apache-airflow
-requests
 pytest
 chispa
