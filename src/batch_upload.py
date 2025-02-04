@@ -84,8 +84,8 @@ def main() -> None:
 
         # Rename columns and save the table
         main_df = renaming_columns(main_df)
-        
-        logger.info("Saving the Delta table...")
+      
+        logger.info(f"Current working directory: {os.getcwd()}")
         save_full_table(main_df)
         
         # Show results and stop Spark session

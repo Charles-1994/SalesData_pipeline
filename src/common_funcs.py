@@ -129,7 +129,8 @@ def save_full_table(df: DataFrame, cleansed_path: str = "cleansed") -> None:
     # Create the directory if it doesn't exist
     if not os.path.exists(cleansed_path):
         os.makedirs(cleansed_path, exist_ok=True)
-    logger.info(f"Saving Delta table to path: {cleansed_path}/Sales_Data")
+    abs_folder_path = os.path.abspath(cleansed_path+'/Sales_Data')
+    logger.info(f"Saving Delta table to path: {abs_folder_path}")
 
     # Write the DataFrame to the cleansed folder as a Delta table
     try:
@@ -137,7 +138,7 @@ def save_full_table(df: DataFrame, cleansed_path: str = "cleansed") -> None:
             .option("delta.columnMapping.mode", "none") \
             .partitionBy("year", "month") \
             .mode("overwrite") \
-            .save(cleansed_path + '/Sales_Data')
+            .save(abs_folder_path)
         logger.info("Data saved successfully.")
     except Exception as e:
         logger.error(f"Error saving Delta table: {e}")
