@@ -14,8 +14,7 @@ setup(
     entry_points={
         'console_scripts': [
             'batch_upload=src.batch_upload:main',
-            'incremental_upload=src.incremental_upload:main',
-            'data_exploration=src.data_exploration:main'
+            'incremental_upload=src.incremental_upload:main'
         ],
     },
 )
